@@ -31,3 +31,5 @@ const Read = () => {
     </div>
   );
 };
+
+export default Read;
