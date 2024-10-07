@@ -6,6 +6,7 @@ import Footer from "./components/footer";
 import Content from "./components/content";
 import Create from "./components/create";
 import Read from "./components/read";
+import Movies from "./components/movies";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       </Routes>
       <Create />
       <Read />
+
       <Footer />
     </Router>
   );
