@@ -2,6 +2,7 @@ import Movies from "./movies.js";
 
 const Read = () => {
   const movies = [
+    // const containing all the data for our movies
     {
       Title: "Avengers: Infinity War",
       Year: "2018",
@@ -28,6 +29,7 @@ const Read = () => {
     },
   ];
   return (
+    // return the Read component, containing the Movies component, into which we pass the movies data
     <div>
       <h3>Hello from the Read component!</h3>
       <Movies movielist={movies} />
