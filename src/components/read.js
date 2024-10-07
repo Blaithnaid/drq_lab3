@@ -1,5 +1,5 @@
 const Read = () => {
-  [
+  const movies = [
     {
       Title: "Avengers: Infinity War",
       Year: "2018",
