@@ -15,6 +15,8 @@ function App() {
         <Route path="/" element={<Content />} />
         <Route path="/read" element={<Header></Header>} />
         <Route path="/create" element={<Footer></Footer>} />
+        <Route path="/read" element={<Read />} />
+        <Route path="/create" element={<Create />} />
       </Routes>
       <Create />
       <Read />
