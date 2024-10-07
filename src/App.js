@@ -21,7 +21,6 @@ function App() {
       </Routes>
       <Create />
       <Read />
-
       <Footer />
     </Router>
   );

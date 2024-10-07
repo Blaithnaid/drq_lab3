@@ -1,3 +1,5 @@
+import Movies from "./components/movies";
+
 const Read = () => {
   const movies = [
     {
@@ -28,6 +30,7 @@ const Read = () => {
   return (
     <div>
       <h3>Hello from the Read component!</h3>
+      <Movies movielist={movies} />
     </div>
   );
 };

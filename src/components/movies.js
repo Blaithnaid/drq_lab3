@@ -1,5 +1,7 @@
 const Movies = (movielist) => {
-  return <div></div>;
+  return props.movielist.map((movie) => (
+    <MovieItem mymovie={movie} key={movie.imdbID} />
+  ));
 };
 
 export default Movies;
