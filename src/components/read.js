@@ -1,4 +1,4 @@
-import Movies from "./components/movies";
+import Movies from "./movies.js";
 
 const Read = () => {
   const movies = [

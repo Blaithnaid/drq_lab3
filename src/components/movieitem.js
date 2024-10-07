@@ -7,3 +7,5 @@ const MovieItem = (props) => {
     </div>
   );
 };
+
+export default MovieItem;
