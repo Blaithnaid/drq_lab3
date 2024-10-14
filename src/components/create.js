@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Create = () => {
   const [title, setTitle] = useState("");
   const [year, setYear] = useState("");
@@ -10,7 +12,7 @@ const Create = () => {
   return (
     <div>
       <h3>Hello from the Create component!</h3>
-      <form onSubmit={handleSubmit()}>
+      <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Add Movie Title: </label>
           <input
