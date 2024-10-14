@@ -13,7 +13,9 @@ const Read = () => {
         console.log(response.data.movies);
         setMovies(response.data.movies);
       })
-      .catch(() => {});
+      .catch((error) => {
+        console.log(error);
+      });
   });
   return (
     // return the Read component, containing the Movies component, into which we pass the movies data
