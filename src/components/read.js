@@ -7,13 +7,15 @@ const Read = () => {
   const [movies, setMovies] = useState(data);
 
   useEffect(() => {
-    axios
+    axios // use axios to get the data from the JSONblob API
       .get("https://jsonblob.com/api/jsonblob/1287718524221775872")
       .then((response) => {
+        // once the data is retrieved, set the movies state to the data
         console.log(response.data.movies);
         setMovies(response.data.movies);
       })
       .catch((error) => {
+        // if there is an error, log it to the console
         console.log(error);
       });
   });
