@@ -44,6 +44,8 @@ app.get("/api/movies", (req, res) => {
 	res.status(201).json({ movies });
 });
 
+// listen on port 4000, respond to requests
 app.listen(port, () => {
+	// log a message to the console
 	console.log(`Server is running on http://localhost:${port}`);
 });
