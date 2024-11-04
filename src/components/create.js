@@ -1,4 +1,5 @@
 import { useState } from "react";
+import axios from "axios";
 
 const Create = () => {
 	const [title, setTitle] = useState("");
@@ -56,6 +57,13 @@ const Create = () => {
 						onChange={(e) => {
 							setPoster(e.target.value);
 						}}
+					/>
+				</div>
+				<div className="form-group">
+					<input
+						type="submit"
+						value="Add Movie"
+						className="btn btn-primary"
 					/>
 				</div>
 			</form>

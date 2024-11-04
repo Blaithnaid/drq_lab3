@@ -32,34 +32,40 @@ app.use((err, req, res, next) => {
 	res.status(500).send("Something went wrong!");
 });
 
+const movies = [
+	{
+		Title: "Avengers: Infinity War",
+		Year: "2018",
+		imdbID: "tt4154756",
+		Type: "movie",
+		Poster: "https://example.com/poster1.jpg",
+	},
+	{
+		Title: "Captain America: Civil War",
+		Year: "2016",
+		imdbID: "tt3498820",
+		Type: "movie",
+		Poster: "https://example.com/poster2.jpg",
+	},
+	{
+		Title: "World War Z",
+		Year: "2013",
+		imdbID: "tt0816711",
+		Type: "movie",
+		Poster: "https://example.com/poster3.jpg",
+	},
+];
+
 app.get("/api/movies", (req, res) => {
 	// this is a mock api, returning the movies arr ay from last week
-	const movies = [
-		{
-			Title: "Avengers: Infinity War",
-			Year: "2018",
-			imdbID: "tt4154756",
-			Type: "movie",
-			Poster: "https://example.com/poster1.jpg",
-		},
-		{
-			Title: "Captain America: Civil War",
-			Year: "2016",
-			imdbID: "tt3498820",
-			Type: "movie",
-			Poster: "https://example.com/poster2.jpg",
-		},
-		{
-			Title: "World War Z",
-			Year: "2013",
-			imdbID: "tt0816711",
-			Type: "movie",
-			Poster: "https://example.com/poster3.jpg",
-		},
-	];
 	res.status(201).json({ movies });
 });
 
+app.post("/api/movies", (req, res) => {
+	// push the new movie into the movies array
+	movies.push(req.body);
+	res.status(201).json({ movie: req.body });
+});
 // listen on port 4000, respond to requests
 app.listen(port, () => {
 	// log a message to the console
