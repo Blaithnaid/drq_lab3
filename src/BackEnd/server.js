@@ -2,7 +2,7 @@ const express = require("express");
 const path = require("path");
 const bodyParser = require("body-parser");
 const app = express();
-const port = 3000;
+const port = 4000;
 
 // this function is used to serve static files
 app.use(express.static("public"));
@@ -17,7 +17,7 @@ app.use((err, req, res, next) => {
 });
 
 app.get("/api/movies", (req, res) => {
-	// this is a mock api, returning the movies array from last week
+	// this is a mock api, returning the movies arr ay from last week
 	const movies = [
 		{
 			Title: "Avengers: Infinity War",
@@ -42,4 +42,8 @@ app.get("/api/movies", (req, res) => {
 		},
 	];
 	res.status(201).json({ movies });
+});
+
+app.listen(port, () => {
+	console.log(`Server is running on http://localhost:${port}`);
 });
