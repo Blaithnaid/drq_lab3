@@ -12,9 +12,9 @@ const Create = () => {
 		console.log(`Title: ${title}, Year: ${year}, Poster: ${poster}`);
 		// create a new movie object
 		const movie = {
-			Title: title,
-			Year: year,
-			Poster: poster,
+			title: title,
+			year: year,
+			poster: poster,
 		};
 
 		axios

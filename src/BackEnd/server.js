@@ -6,6 +6,8 @@ const port = 4000;
 const cors = require("cors");
 const mongoose = require("mongoose");
 
+app.use(express.json());
+
 require("dotenv").config();
 
 // connect to the database
@@ -25,13 +27,21 @@ const movieSchema = new mongoose.Schema({
 // create a model from the schema, save it as moviesDb.
 const Movie = mongoose.model("moviesDb", movieSchema);
 
-// this function is used to get all the movies from the database
+// create an array to store the movies
+const movies = [];
+
+// this adds a new movie to the database
 app.post("/api/movies", async (req, res) => {
+	// get the title, year, and poster from the request body.
+	// this comes from the form in the front end
 	const { title, year, poster } = req.body;
 
+	// use the info from the form to create a new movie via the Movie model
 	const newMovie = new Movie({ title, year, poster });
+	// save the new movie to the database
 	await newMovie.save();
 
+	// send a response to the front end
 	res.status(201).json({
 		message: "Movie created successfully",
 		movie: newMovie,
@@ -65,41 +75,10 @@ app.use((err, req, res, next) => {
 	res.status(500).send("Something went wrong!");
 });
 
-const movies = [
-	{
-		Title: "Avengers: Infinity War",
-		Year: "2018",
-		imdbID: "tt4154756",
-		Type: "movie",
-		Poster: "https://m.media-amazon.com/images/M/MV5BMjMxNjY2MDU1OV5BMl5BanBnXkFtZTgwNzY1MTUwNTM@._V1_SX300.jpg",
-	},
-	{
-		Title: "Captain America: Civil War",
-		Year: "2016",
-		imdbID: "tt3498820",
-		Type: "movie",
-		Poster: "https://m.media-amazon.com/images/M/MV5BMjQ0MTgyNjAxMV5BMl5BanBnXkFtZTgwNjUzMDkyODE@._V1_SX300.jpg",
-	},
-	{
-		Title: "World War Z",
-		Year: "2013",
-		imdbID: "tt0816711",
-		Type: "movie",
-		Poster: "https://m.media-amazon.com/images/M/MV5BNDQ4YzFmNzktMmM5ZC00MDZjLTk1OTktNDE2ODE4YjM2MjJjXkEyXkFqcGdeQXVyNTA4NzY1MzY@._V1_SX300.jpg",
-	},
-];
-
-app.get("/api/movies", (req, res) => {
-	// this is a mock api, returning the movies arr ay from last week
-	res.status(201).json({ movies });
+app.get("/api/movies", async (req, res) => {
+	const movies = await Movie.find({});
+	res.json(movies);
 });
-
-// don't think this is needed bc we are using mongoDB now
-// app.post("/api/movies", (req, res) => {
-// 	// push the new movie into the movies array
-// 	movies.push(req.body);
-// 	res.status(201).json({ movie: req.body });
-// });
 
 // listen on port 4000, respond to requests
 app.listen(port, () => {
