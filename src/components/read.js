@@ -18,11 +18,10 @@ const Read = () => {
 				// if there is an error, log it to the console
 				console.log(error);
 			});
-	});
+	}, []);
 	return (
 		// return the Read component, containing the Movies component, into which we pass the movies data
 		<div>
-			<h3>Hello from the Read component!</h3>
 			<Movies movielist={movies} />
 		</div>
 	);
