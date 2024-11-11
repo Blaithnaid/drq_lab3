@@ -4,6 +4,16 @@ const bodyParser = require("body-parser");
 const app = express();
 const port = 4000;
 const cors = require("cors");
+const mongoose = require("mongoose");
+
+require("dotenv").config();
+
+// connect to the database
+mongoose.connect(process.env.MONGO_CONNECTION_STRING);
+// check if the connection is successful
+mongoose.connection.on("connected", () => {
+	console.log("Connected to MongoDB");
+});
 
 // this function is used to allow cross-origin requests
 app.use(cors());
