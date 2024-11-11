@@ -15,6 +15,29 @@ mongoose.connection.on("connected", () => {
 	console.log("Connected to MongoDB");
 });
 
+// this outlines how MongoDB should store the data
+const movieSchema = new mongoose.Schema({
+	title: String,
+	year: String,
+	poster: String,
+});
+
+// create a model from the schema, save it as moviesDb.
+const Movie = mongoose.model("moviesDb", movieSchema);
+
+// this function is used to get all the movies from the database
+app.post("/api/movies", async (req, res) => {
+	const { title, year, poster } = req.body;
+
+	const newMovie = new Movie({ title, year, poster });
+	await newMovie.save();
+
+	res.status(201).json({
+		message: "Movie created successfully",
+		movie: newMovie,
+	});
+});
+
 // this function is used to allow cross-origin requests
 app.use(cors());
 app.use(function (req, res, next) {
@@ -71,11 +94,13 @@ app.get("/api/movies", (req, res) => {
 	res.status(201).json({ movies });
 });
 
-app.post("/api/movies", (req, res) => {
-	// push the new movie into the movies array
-	movies.push(req.body);
-	res.status(201).json({ movie: req.body });
-});
+// don't think this is needed bc we are using mongoDB now
+// app.post("/api/movies", (req, res) => {
+// 	// push the new movie into the movies array
+// 	movies.push(req.body);
+// 	res.status(201).json({ movie: req.body });
+// });
+
 // listen on port 4000, respond to requests
 app.listen(port, () => {
 	// log a message to the console
