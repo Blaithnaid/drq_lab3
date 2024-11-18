@@ -55,15 +55,19 @@ app.post("/api/movies", async (req, res) => {
 
 // route for getting a single movie from db to be edited
 app.get("/api/movie/:id", async (req, res) => {
+	// find the movie by id
 	let movie = await Movie.findById({ _id: req.params.id });
+	// send the movie back to the client
 	res.send(movie);
 });
 
 // route to update a movie in db after editing
 app.put("/api/movie/:id", async (req, res) => {
+	// find the movie by id and update it
 	let movie = await Movie.findByIdAndUpdate(req.params.id, req.body, {
 		new: true,
 	});
+	// send the updated movie back to the client
 	res.send(movie);
 });
 

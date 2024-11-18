@@ -1,5 +1,6 @@
 import { useEffect } from "react"; // import the useEffect hook from react
 import Card from "react-bootstrap/Card";
+// lets us route to the edit page
 import { Link } from "react-router-dom"; // so that we can load edit/:id route
 
 const MovieItem = (props) => {
