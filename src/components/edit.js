@@ -14,47 +14,54 @@ const Edit = () => {
 	const [poster, setPoster] = useState("");
 
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		axios
+			.get("http://localhost:4000/api/movie/" + id)
+			.then((response) => {
+				setTitle(response.data.title);
+				setYear(response.data.year);
+				setPoster(response.data.poster);
+			})
+			.catch((error) => {
+				console.log(error);
+			});
+	}, [id]);
+
 	return (
 		<div>
-			<h3>Hello from the Edit component!</h3>
 			<form onSubmit={handleSubmit}>
 				<div className="form-group">
-					<label>Add Movie Title: </label>
+					<label>Movie Title: </label>
 					<input
 						type="text"
 						className="form-control"
 						value={title}
-						onChange={(e) => {
-							setTitle(e.target.value);
-						}}
+						onChange={(e) => setTitle(e.target.value)}
 					/>
 				</div>
 				<div className="form-group">
-					<label>Add Movie Year: </label>
+					<label>Release Year: </label>
 					<input
 						type="text"
 						className="form-control"
 						value={year}
-						onChange={(e) => {
-							setYear(e.target.value);
-						}}
+						onChange={(e) => setYear(e.target.value)}
 					/>
 				</div>
 				<div className="form-group">
-					<label>Add Movie Poster: </label>
-					<textarea
+					<label>Poster URL: </label>
+					<input
 						type="text"
 						className="form-control"
 						value={poster}
-						onChange={(e) => {
-							setPoster(e.target.value);
-						}}
+						onChange={(e) => setPoster(e.target.value)}
 					/>
 				</div>
 				<div className="form-group">
 					<input
 						type="submit"
-						value="Add Movie"
+						value="Edit Movie"
 						className="btn btn-primary"
 					/>
 				</div>
