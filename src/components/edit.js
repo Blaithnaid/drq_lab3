@@ -16,9 +16,11 @@ const Edit = () => {
 	const navigate = useNavigate();
 
 	useEffect(() => {
+		// get the movie from the server
 		axios
 			.get("http://localhost:4000/api/movie/" + id)
 			.then((response) => {
+				// set our form fields to the values from the server
 				setTitle(response.data.title);
 				setYear(response.data.year);
 				setPoster(response.data.poster);
@@ -28,11 +30,15 @@ const Edit = () => {
 			});
 	}, [id]);
 
+	// handle form submission
 	const handleSubmit = (event) => {
 		event.preventDefault();
+		// create a new movie object
 		const newMovie = { id, title, year, poster };
+		// send the movie object to the server, overwriting the existing movie
 		axios
 			.put("http://localhost:4000/api/movie/" + id, newMovie)
+			// navigate to the read page
 			.then((res) => {
 				console.log(res.data);
 				navigate("/read");
