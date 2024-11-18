@@ -1,5 +1,6 @@
 import { useEffect } from "react"; // import the useEffect hook from react
 import Card from "react-bootstrap/Card";
+import { Link } from "react-router-dom"; // so that we can load edit/:id route
 
 const MovieItem = (props) => {
 	useEffect(() => {
@@ -20,6 +21,12 @@ const MovieItem = (props) => {
 					<footer className="blockquote-footer">
 						{props.mymovie.year}
 					</footer>
+					<Link
+						to={"/edit/" + props.mymovie._id}
+						className="btn btn-primary"
+					>
+						Edit
+					</Link>
 				</blockquote>
 			</Card.Body>
 		</Card>
