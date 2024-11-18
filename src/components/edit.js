@@ -28,6 +28,17 @@ const Edit = () => {
 			});
 	}, [id]);
 
+	const handleSubmit = (event) => {
+		event.preventDefault();
+		const newMovie = { id, title, year, poster };
+		axios
+			.put("http://localhost:4000/api/movie/" + id, newMovie)
+			.then((res) => {
+				console.log(res.data);
+				navigate("/read");
+			});
+	};
+
 	return (
 		<div>
 			<form onSubmit={handleSubmit}>
